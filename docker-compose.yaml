@@ -1,0 +1,23 @@
+version: "3"
+services:
+  mitodo:
+    container_name: mitodo
+    restart: always
+    build: ./
+    volumes:
+      - ./:/var/www/mitodo
+    links:
+      - mongo
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+
+  mongo:
+    image: mongo
+    container_name: mongo
+    environment:
+      - mongodb+srv://todo:1234@atlascluster.kd45zly.mongodb.net/?retryWrites=true&w=majority&appName=AtlasCluster
+    ports:
+      - "27017:27017"
