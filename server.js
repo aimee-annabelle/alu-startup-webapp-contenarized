@@ -1,19 +1,19 @@
-const mongoose = require('mongoose');
-const bodyParse = require('body-parser');
-const app = require('express')();
-const moment = require('moment');
+const mongoose = require("mongoose");
+const bodyParse = require("body-parser");
+const app = require("express")();
+const moment = require("moment");
 
 // Fontend route
-const FrontRouter = require('./routes/front');
+const FrontRouter = require("./routes/front");
 
 // Set ejs template engine
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 
 app.use(bodyParse.urlencoded({ extended: false }));
 app.locals.moment = moment;
 
 // Database connection
-const db = require('./config').mongoProdURI;
+const db = require("./config").mongoProdURI;
 mongoose
   .connect(db, { useNewUrlParser: true })
   .then(() => console.log(`Mongodb Connected`))
